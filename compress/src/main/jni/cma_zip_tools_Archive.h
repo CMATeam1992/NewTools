@@ -1,5 +1,5 @@
-#ifndef _Included_vn_hn_tools_Archive
-#define _Included_vn_hn_tools_Archive
+#ifndef _Included_cma_zip_tools_Archive
+#define _Included_cma_zip_tools_Archive
 
 #include <jni.h>
 

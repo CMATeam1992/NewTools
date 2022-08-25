@@ -4,7 +4,7 @@ public class Archive {
     static {
         System.loadLibrary("Rar");
         System.loadLibrary("7z");
-        System.loadLibrary("hn_zip_tools");
+        System.loadLibrary("cma_zip_tools");
         init();
     }
 

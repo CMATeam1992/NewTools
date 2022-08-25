@@ -1,9 +1,4 @@
-/*
- * Copyright (c) 2021. Created by : JackyHieu.
- * Support: hieu1211.ictu@gmail.com
- */
-
-#include "hn_tools_zip_Archive.h"
+#include "cma_zip_tools_Archive.h"
 #include <android/log.h>
 
 
@@ -485,7 +480,7 @@ int ProcessCommand(int numArgs, const char *args[], Environment &env) {
             LOGE("Error, SystemException: %s", (LPCSTR) GetOemString(message));
             if (result == E_ABORT)
                 return result;
-            if (result != E_ABORT && messageWasDisplayed) {
+            if (messageWasDisplayed) {
                 LOGE("Error, kFatalError:%d", result);
                 return NExitCode::kFatalError;
             }
