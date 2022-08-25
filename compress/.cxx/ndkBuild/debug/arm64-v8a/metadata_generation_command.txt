@@ -1,13 +1,13 @@
 Executable : /Users/jackyhieu1211/Library/Android/sdk/ndk/21.4.7075529/ndk-build
 arguments : 
 NDK_PROJECT_PATH=null
-APP_BUILD_SCRIPT=/Users/jackyhieu1211/AndroidApp/NewTools/compress/src/main/jni/Android.mk
+APP_BUILD_SCRIPT=/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/Android.mk
 APP_ABI=arm64-v8a
 NDK_ALL_ABIS=arm64-v8a
 NDK_DEBUG=1
 APP_PLATFORM=android-24
-NDK_OUT=/Users/jackyhieu1211/AndroidApp/NewTools/compress/build/intermediates/ndkBuild/debug/obj
-NDK_LIBS_OUT=/Users/jackyhieu1211/AndroidApp/NewTools/compress/build/intermediates/ndkBuild/debug/lib
+NDK_OUT=/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/build/intermediates/ndkBuild/debug/obj
+NDK_LIBS_OUT=/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/build/intermediates/ndkBuild/debug/lib
 APP_SHORT_COMMANDS=false
 LOCAL_SHORT_COMMANDS=false
 -B

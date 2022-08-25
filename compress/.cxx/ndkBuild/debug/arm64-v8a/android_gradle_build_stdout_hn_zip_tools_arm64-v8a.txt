@@ -1,1 +1,3 @@
-make: Nothing to be done for 'hn_zip_tools'.
+[arm64-v8a] Prebuilt       : lib7z.so <= /Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/prebuilt/arm64-v8a/
+[arm64-v8a] Prebuilt       : libRar.so <= /Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/prebuilt/arm64-v8a/
+[arm64-v8a] SharedLibrary  : libhn_zip_tools.so

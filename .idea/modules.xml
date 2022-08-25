@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/NewTools.iml" filepath="$PROJECT_DIR$/.idea/modules/NewTools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/NewTools.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/NewTools.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/NewTools.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/NewTools.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/NewTools.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/NewTools.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/NewTools.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/NewTools.app.unitTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/compress/NewTools.compress.iml" filepath="$PROJECT_DIR$/.idea/modules/compress/NewTools.compress.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/compress/NewTools.compress.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/compress/NewTools.compress.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/compress/NewTools.compress.main.iml" filepath="$PROJECT_DIR$/.idea/modules/compress/NewTools.compress.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/compress/NewTools.compress.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/compress/NewTools.compress.unitTest.iml" />
+    </modules>
+  </component>
+</project>

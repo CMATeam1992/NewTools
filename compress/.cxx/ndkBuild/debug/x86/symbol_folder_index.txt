@@ -1,1 +1,1 @@
-/Users/jackyhieu1211/AndroidApp/NewTools/compress/build/intermediates/ndkBuild/debug/obj/local/x86
+/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/build/intermediates/ndkBuild/debug/obj/local/x86

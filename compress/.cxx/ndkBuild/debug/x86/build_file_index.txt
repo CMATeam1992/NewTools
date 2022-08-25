@@ -1,1 +1,1 @@
-/Users/jackyhieu1211/AndroidApp/NewTools/compress/src/main/jni/Android.mk
+/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/Android.mk

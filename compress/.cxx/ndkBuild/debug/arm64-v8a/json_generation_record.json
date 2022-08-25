@@ -2,21 +2,105 @@
   {
     "level": "INFO",
     "message": "Start JSON generation. Platform version: 24 min SDK version: arm64-v8a",
-    "file": "/Users/jackyhieu1211/AndroidApp/NewTools/compress/src/main/jni/Android.mk",
+    "file": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/Android.mk",
     "tag": "debug|arm64-v8a",
     "diagnosticCode": "UNKNOWN"
   },
   {
     "level": "INFO",
-    "message": "JSON \u0027/Users/jackyhieu1211/AndroidApp/NewTools/compress/.cxx/ndkBuild/debug/arm64-v8a/android_gradle_build.json\u0027 was up-to-date",
-    "file": "/Users/jackyhieu1211/AndroidApp/NewTools/compress/src/main/jni/Android.mk",
+    "message": "rebuilding JSON /Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/.cxx/ndkBuild/debug/arm64-v8a/android_gradle_build.json due to:",
+    "file": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/Android.mk",
+    "tag": "debug|arm64-v8a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "- command changed from previous, will remove stale json folder",
+    "file": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/Android.mk",
+    "tag": "debug|arm64-v8a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "- a dependent build file changed",
+    "file": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/Android.mk",
+    "tag": "debug|arm64-v8a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "  - /Users/jackyhieu1211/AndroidApp/NewTools/compress/src/main/jni/Android.mk",
+    "file": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/Android.mk",
+    "tag": "debug|arm64-v8a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "removing stale contents from \u0027/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/.cxx/ndkBuild/debug/arm64-v8a\u0027",
+    "file": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/Android.mk",
+    "tag": "debug|arm64-v8a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "created folder \u0027/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/.cxx/ndkBuild/debug/arm64-v8a\u0027",
+    "file": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/Android.mk",
+    "tag": "debug|arm64-v8a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "executing ndkBuild Executable : /Users/jackyhieu1211/Library/Android/sdk/ndk/21.4.7075529/ndk-build\narguments : \nNDK_PROJECT_PATH\u003dnull\nAPP_BUILD_SCRIPT\u003d/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/Android.mk\nAPP_ABI\u003darm64-v8a\nNDK_ALL_ABIS\u003darm64-v8a\nNDK_DEBUG\u003d1\nAPP_PLATFORM\u003dandroid-24\nNDK_OUT\u003d/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/build/intermediates/ndkBuild/debug/obj\nNDK_LIBS_OUT\u003d/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/build/intermediates/ndkBuild/debug/lib\nAPP_SHORT_COMMANDS\u003dfalse\nLOCAL_SHORT_COMMANDS\u003dfalse\n-B\n-n\njvmArgs : \n\n",
+    "file": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/Android.mk",
+    "tag": "debug|arm64-v8a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "Executable : /Users/jackyhieu1211/Library/Android/sdk/ndk/21.4.7075529/ndk-build\narguments : \nNDK_PROJECT_PATH\u003dnull\nAPP_BUILD_SCRIPT\u003d/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/Android.mk\nAPP_ABI\u003darm64-v8a\nNDK_ALL_ABIS\u003darm64-v8a\nNDK_DEBUG\u003d1\nAPP_PLATFORM\u003dandroid-24\nNDK_OUT\u003d/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/build/intermediates/ndkBuild/debug/obj\nNDK_LIBS_OUT\u003d/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/build/intermediates/ndkBuild/debug/lib\nAPP_SHORT_COMMANDS\u003dfalse\nLOCAL_SHORT_COMMANDS\u003dfalse\n-B\n-n\njvmArgs : \n\n",
+    "file": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/Android.mk",
+    "tag": "debug|arm64-v8a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "parse and convert ndk-build output to build configuration JSON",
+    "file": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/Android.mk",
+    "tag": "debug|arm64-v8a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "done executing ndkBuild",
+    "file": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/Android.mk",
+    "tag": "debug|arm64-v8a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "deleted unexpected build output /Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/build/intermediates/ndkBuild/debug/obj/local/arm64-v8a/lib7z.so in incremental regenerate",
+    "file": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/Android.mk",
+    "tag": "debug|arm64-v8a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "deleted unexpected build output /Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/build/intermediates/ndkBuild/debug/obj/local/arm64-v8a/libRar.so in incremental regenerate",
+    "file": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/Android.mk",
+    "tag": "debug|arm64-v8a",
+    "diagnosticCode": "UNKNOWN"
+  },
+  {
+    "level": "INFO",
+    "message": "write command file /Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/.cxx/ndkBuild/debug/arm64-v8a/build_command.txt",
+    "file": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/Android.mk",
     "tag": "debug|arm64-v8a",
     "diagnosticCode": "UNKNOWN"
   },
   {
     "level": "INFO",
     "message": "JSON generation completed without problems",
-    "file": "/Users/jackyhieu1211/AndroidApp/NewTools/compress/src/main/jni/Android.mk",
+    "file": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/Android.mk",
     "tag": "debug|arm64-v8a",
     "diagnosticCode": "UNKNOWN"
   }

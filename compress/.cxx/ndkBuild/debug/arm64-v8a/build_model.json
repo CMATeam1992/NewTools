@@ -6,16 +6,16 @@
     "deprecated": false,
     "default": true
   },
-  "originalCxxBuildFolder": "/Users/jackyhieu1211/AndroidApp/NewTools/compress/.cxx/ndkBuild/debug/arm64-v8a",
-  "cxxBuildFolder": "/Users/jackyhieu1211/AndroidApp/NewTools/compress/.cxx/ndkBuild/debug/arm64-v8a",
+  "originalCxxBuildFolder": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/.cxx/ndkBuild/debug/arm64-v8a",
+  "cxxBuildFolder": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/.cxx/ndkBuild/debug/arm64-v8a",
   "abiPlatformVersion": 24,
   "variant": {
     "buildSystemArgumentList": [],
     "cFlagsList": [],
     "cppFlagsList": [],
     "variantName": "debug",
-    "objFolder": "/Users/jackyhieu1211/AndroidApp/NewTools/compress/build/intermediates/ndkBuild/debug/obj/local",
-    "soFolder": "/Users/jackyhieu1211/AndroidApp/NewTools/compress/build/intermediates/ndkBuild/debug/lib",
+    "objFolder": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/build/intermediates/ndkBuild/debug/obj/local",
+    "soFolder": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/build/intermediates/ndkBuild/debug/lib",
     "isDebuggableEnabled": true,
     "validAbiList": [
       "ARM64_V8A"
@@ -24,13 +24,13 @@
     "implicitBuildTargetSet": [],
     "cmakeSettingsConfiguration": "android-gradle-plugin-predetermined-name",
     "module": {
-      "cxxFolder": "/Users/jackyhieu1211/AndroidApp/NewTools/compress/.cxx",
+      "cxxFolder": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/.cxx",
       "splitsAbiFilterSet": [],
-      "intermediatesFolder": "/Users/jackyhieu1211/AndroidApp/NewTools/compress/build/intermediates",
+      "intermediatesFolder": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/build/intermediates",
       "gradleModulePathName": ":compress",
-      "moduleRootFolder": "/Users/jackyhieu1211/AndroidApp/NewTools/compress",
-      "moduleBuildFile": "/Users/jackyhieu1211/AndroidApp/NewTools/compress/build.gradle",
-      "makeFile": "/Users/jackyhieu1211/AndroidApp/NewTools/compress/src/main/jni/Android.mk",
+      "moduleRootFolder": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress",
+      "moduleBuildFile": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/build.gradle",
+      "makeFile": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/Android.mk",
       "buildSystem": "NDK_BUILD",
       "ndkFolder": "/Users/jackyhieu1211/Library/Android/sdk/ndk/21.4.7075529",
       "ndkVersion": "21.4.7075529",
@@ -109,23 +109,23 @@
         "SYSTEM": {}
       },
       "project": {
-        "rootBuildGradleFolder": "/Users/jackyhieu1211/AndroidApp/NewTools",
-        "cxxFolder": "/Users/jackyhieu1211/AndroidApp/NewTools/.cxx",
-        "compilerSettingsCacheFolder": "/Users/jackyhieu1211/AndroidApp/NewTools/.cxx",
+        "rootBuildGradleFolder": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools",
+        "cxxFolder": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/.cxx",
+        "compilerSettingsCacheFolder": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/.cxx",
         "sdkFolder": "/Users/jackyhieu1211/Library/Android/sdk",
         "isNativeCompilerSettingsCacheEnabled": false,
         "isBuildOnlyTargetAbiEnabled": true,
-        "ideBuildTargetAbi": "arm64-v8a,armeabi-v7a,armeabi",
+        "ideBuildTargetAbi": "arm64-v8a",
         "isCmakeBuildCohabitationEnabled": false,
         "isPrefabEnabled": false,
         "isV2NativeModelEnabled": true
       },
       "nativeBuildOutputLevel": "QUIET"
     },
-    "prefabDirectory": "/Users/jackyhieu1211/AndroidApp/NewTools/compress/.cxx/ndkBuild/debug/prefab"
+    "prefabDirectory": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/.cxx/ndkBuild/debug/prefab"
   },
   "buildSettings": {
     "environmentVariables": []
   },
-  "prefabFolder": "/Users/jackyhieu1211/AndroidApp/NewTools/compress/.cxx/ndkBuild/debug/prefab/arm64-v8a"
+  "prefabFolder": "/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/.cxx/ndkBuild/debug/prefab/arm64-v8a"
 }
