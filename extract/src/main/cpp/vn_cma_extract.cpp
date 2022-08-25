@@ -1027,65 +1027,11 @@ JNIEXPORT void JNICALL Java_vn_cma_extract_Archive_init
         return;
     }
     LOGI("Initializing Method IDs for : %s", "ExtractCallback");
-    beforeOpen = env->GetMethodID(extractCallbackClass, "beforeOpen", "(Ljava/lang/String;)V");
-    if (!beforeOpen)
-        LOGE("Error:couldn't get methodid of method: %s", "beforeOpen");
-
-    openResult = env->GetMethodID(extractCallbackClass, "openResult",
-                                  "(Ljava/lang/String;JZ)V");
-    if (!openResult)
-        LOGE("Error:couldn't get methodid of method: %s", "openResult");
-
-    extractResult = env->GetMethodID(extractCallbackClass, "extractResult", "(J)V");
-    if (!extractResult)
-        LOGE("Error:couldn't get methodid of method: %s", "extractResult");
-
-    thereAreNoFiles = env->GetMethodID(extractCallbackClass, "thereAreNoFiles", "()J");
-    if (!thereAreNoFiles)
-        LOGE("Error:couldn't get methodid of method: %s", "thereAreNoFiles");
-
-    setPassword = env->GetMethodID(extractCallbackClass, "setPassword",
-                                   "(Ljava/lang/String;)J");
-    if (!setPassword)
-        LOGE("Error:couldn't get methodid of method: %s", "setPassword");
-
-    askWrite = env->GetMethodID(extractCallbackClass, "askWrite",
-                                "(Ljava/lang/String;IJJLjava/lang/String;Ljava/lang/String;I)J");
-    if (!askWrite)
-        LOGE("Error:couldn't get methodid of method: %s", "askWrite");
 
     setCurrentFilePath = env->GetMethodID(extractCallbackClass, "setCurrentFilePath",
                                           "(Ljava/lang/String;J)J");
     if (!setCurrentFilePath)
         LOGE("Error:couldn't get methodid of method: %s", "setCurrentFilePath");
-
-    showMessage = env->GetMethodID(extractCallbackClass, "showMessage",
-                                   "(Ljava/lang/String;)J");
-    if (!showMessage)
-        LOGE("Error:couldn't get methodid of method: %s", "showMessage");
-
-    setNumFiles = env->GetMethodID(extractCallbackClass, "setNumFiles", "(J)J");
-    if (!setNumFiles)
-        LOGE("Error:couldn't get methodid of method: %s", "setNumFiles");
-
-    setRatioInfo = env->GetMethodID(extractCallbackClass, "setRatioInfo", "(JJ)J");
-    if (!setRatioInfo)
-        LOGE("Error:couldn't get methodid of method: %s", "setRatioInfo");
-
-    askOverwrite = env->GetMethodID(extractCallbackClass, "askOverwrite",
-                                    "(Ljava/lang/String;JJLjava/lang/String;JJI)J");
-    if (!askOverwrite)
-        LOGE("Error:couldn't get methodid of method: %s", "askOverwrite");
-
-    prepareOperation = env->GetMethodID(extractCallbackClass, "prepareOperation",
-                                        "(Ljava/lang/String;ZIJ)J");
-    if (!prepareOperation)
-        LOGE("Error:couldn't get methodid of method: %s", "prepareOperation");
-
-    messageError = env->GetMethodID(extractCallbackClass, "messageError",
-                                    "(Ljava/lang/String;)J");
-    if (!messageError)
-        LOGE("Error:couldn't get methodid of method: %s", "messageError");
 
     exAddErrorMessage = env->GetMethodID(extractCallbackClass, "addErrorMessage",
                                          "(Ljava/lang/String;)V");
@@ -1110,15 +1056,6 @@ JNIEXPORT void JNICALL Java_vn_cma_extract_Archive_init
     setCompleted = env->GetMethodID(extractCallbackClass, "setCompleted", "(J)J");
     if (!setCompleted)
         LOGE("Error:couldn't get methodid of method: %s", "setCompleted");
-
-    open_CheckBreak = env->GetMethodID(extractCallbackClass, "open_CheckBreak", "()J");
-    if (!open_CheckBreak)
-        LOGE("Error:couldn't get methodid of method: %s", "open_CheckBreak");
-
-    open_SetTotal = env->GetMethodID(extractCallbackClass, "open_SetTotal", "(JJ)J");
-    if (!open_SetTotal)
-        LOGE("Error:couldn't get methodid of method: %s", "open_SetTotal");
-
 
     // Initialization for Java Archive List
     jclass archiveItemsListClass = env->FindClass("vn/cma/extract/data/ArchiveItemsList");

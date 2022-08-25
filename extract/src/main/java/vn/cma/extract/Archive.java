@@ -8,7 +8,6 @@ import vn.cma.extract.data.ArchiveItemsList;
 public class Archive {
     static {
         System.loadLibrary("p7zip");
-        System.loadLibrary("vn_cma_extract");
         init();
     }
 
