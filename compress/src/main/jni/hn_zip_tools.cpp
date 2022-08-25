@@ -510,7 +510,7 @@ extern "C" {
 
 int InitializeUpdateCallbackIds(JNIEnv *env) {
     int ret = 0;
-    jclass updateCallbackClass = env->FindClass("vn/cma/compress/UpdateCallback");
+    jclass updateCallbackClass = env->FindClass("vn/cma/compress/ZipCallback");
     if (updateCallbackClass == nullptr) {
         LOGE("Error:couldn't get classid of class: %s", "updateCallbackClass");
         return -1;

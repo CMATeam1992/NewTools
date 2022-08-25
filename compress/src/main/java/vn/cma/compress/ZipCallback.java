@@ -5,7 +5,7 @@
 
 package vn.cma.compress;
 
-public interface UpdateCallback {
+public interface ZipCallback {
 		
 	void addErrorMessage(String message);
 	long startArchive(String name, boolean updating );
