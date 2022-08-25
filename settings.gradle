@@ -1,0 +1,3 @@
+rootProject.name = "NewTools"
+include ':app'
+include ':compress'

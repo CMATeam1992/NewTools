@@ -1,0 +1,1 @@
+/Users/jackyhieu1211/AndroidApp/NewTools/compress/src/main/jni/Android.mk
