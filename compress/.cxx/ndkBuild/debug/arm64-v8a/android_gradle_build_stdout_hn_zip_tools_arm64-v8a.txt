@@ -1,5 +1,0 @@
-[arm64-v8a] Compile++      : hn_zip_tools <= hn_zip_tools.cpp
-[arm64-v8a] Compile++      : hn_zip_tools <= ExtractGUI.cpp
-[arm64-v8a] Compile++      : hn_zip_tools <= ExtractCallback.cpp
-[arm64-v8a] Compile++      : hn_zip_tools <= ExtractCallbackConsole.cpp
-[arm64-v8a] SharedLibrary  : libhn_zip_tools.so

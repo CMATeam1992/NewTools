@@ -1,4 +1,0 @@
-/Users/jackyhieu1211/AndroidApp/ZipTools/NewTools/compress/src/main/jni/ExtractCallback.cpp:456:17: warning: enumeration values 'kWithoutPrompt', 'kAutoRename', and 'kAutoRenameExisting' not handled in switch [-Wswitch]
-        switch (OverwriteMode) {
-                ^
-1 warning generated.
