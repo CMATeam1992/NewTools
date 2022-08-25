@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2021. Created by : JackyHieu.
- * Support: hieu1211.ictu@gmail.com
- */
-
 package vn.cma.compress.utils.compression;
 
 import org.jetbrains.annotations.Nullable;
