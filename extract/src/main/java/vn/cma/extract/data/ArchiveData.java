@@ -4,7 +4,7 @@ import java.util.List;
 
 public class ArchiveData {
     public List<ArchiveItemsList.ArchiveItem> list;
-    Boolean errorPass;
+    public Boolean errorPass;
 
     public ArchiveData(List<ArchiveItemsList.ArchiveItem> list, Boolean errorPass) {
         this.list = list;

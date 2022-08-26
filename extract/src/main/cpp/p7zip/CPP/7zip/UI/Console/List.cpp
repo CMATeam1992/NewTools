@@ -1164,7 +1164,8 @@ HRESULT ListArchives2(CCodecs *codecs,
                       UInt64 &numWarnings,
                       CustomArchiveItemList &listData) {
     bool allFilesAreAllowed = wildcardCensor.AreAllAllowed();
-
+    bool errorPass = false;
+    HRESULT errorPassData = 888;
     numErrors = 0;
     numWarnings = 0;
 
@@ -1256,7 +1257,10 @@ HRESULT ListArchives2(CCodecs *codecs,
             g_StdOut.Flush();
             *g_ErrStream << endl << kError << arcPath << " : ";
             if (result == S_FALSE) {
-                Print_OpenArchive_Error(*g_ErrStream, codecs, arcLink);
+                if (arcLink.PasswordWasAsked) {
+                    errorPass = true;
+                }
+                //Print_OpenArchive_Error(*g_ErrStream, codecs, arcLink);
             } else {
                 lastError = result;
                 *g_ErrStream << "opening : ";
@@ -1455,6 +1459,10 @@ HRESULT ListArchives2(CCodecs *codecs,
         PrintPropNameAndNumber(g_StdOut, "Archives", numArcs);
         PrintPropNameAndNumber(g_StdOut, "Volumes", numVolumes);
         PrintPropNameAndNumber(g_StdOut, "Total archives size", totalArcSizes);
+    }
+
+    if (errorPass) {
+        return errorPassData;
     }
 
     if (numErrors == 1 && lastError != 0)

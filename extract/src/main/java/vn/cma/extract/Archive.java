@@ -43,7 +43,7 @@ public class Archive {
         int result = listArchive2(filePath, archiveItemsList, password);
         return new ArchiveData(
                 archiveItemsList.getItems(),
-                false
+                result == 888
         );
     }
 

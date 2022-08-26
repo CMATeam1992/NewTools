@@ -832,7 +832,9 @@ int ProcessCommand(int numArgs, const char *args[], Environment &env) {
 #endif
                         &options.Properties,
                         numErrors, numWarnings, dataList);
-
+                if (hresultMain == 888){
+                    return NExitCode::kPassError;
+                }
                 if (options.EnableHeaders)
                     if (numWarnings > 0)
                         g_StdOut << endl << "Warnings: " << numWarnings << endl;
@@ -911,7 +913,7 @@ int ProcessCommand(int numArgs, const char *args[], Environment &env) {
 #endif
     }
 
-    return 0;
+    return retCode;
 
 }
 #ifdef __cplusplus
@@ -981,7 +983,7 @@ JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_listArchive2
         }
         return ret;
     } catch (...) {
-        return -1992;
+        return -2000;
     }
 }
 
