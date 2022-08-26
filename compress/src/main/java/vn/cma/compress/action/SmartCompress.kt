@@ -59,6 +59,24 @@ enum class SmartCompressType(val rawValue: Int) {
     ZIP(1), SEVEN_ZIP(2), TAR(3)
 }
 
+fun Int.toSmartCompressType(): SmartCompressType {
+    return when (this) {
+        1 -> SmartCompressType.ZIP
+        2 -> SmartCompressType.SEVEN_ZIP
+        3 -> SmartCompressType.TAR
+        else -> SmartCompressType.ZIP
+    }
+}
+
 enum class CompressLevel(val rawValue: Int) {
     FAST(3), NORMAL(5), MAXIMUM(7)
+}
+
+fun Int.toCompressLevel(): CompressLevel {
+    return when (this) {
+        3 -> CompressLevel.FAST
+        5 -> CompressLevel.NORMAL
+        7 -> CompressLevel.MAXIMUM
+        else -> CompressLevel.NORMAL
+    }
 }
