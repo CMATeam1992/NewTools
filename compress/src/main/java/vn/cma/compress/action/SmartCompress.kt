@@ -55,8 +55,8 @@ data class SmartCompressData(
     val compressLevel: CompressLevel
 )
 
-enum class SmartCompressType {
-    ZIP, SEVEN_ZIP, TAR
+enum class SmartCompressType(val rawValue: Int) {
+    ZIP(1), SEVEN_ZIP(2), TAR(3)
 }
 
 enum class CompressLevel(val rawValue: Int) {
