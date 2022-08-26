@@ -5,22 +5,29 @@ import android.os.Bundle
 import android.util.Log
 import vn.cma.extract.ExtractCallback
 import vn.cma.extract.extension.ExtractUtils
+import vn.cma.newtools.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), ExtractCallback {
+
+    private lateinit var binding: ActivityMainBinding
 
     private var pass = "123456890"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         //val filePath = "/storage/emulated/0/ZipExtractor/Compressed/testpass.zip"
         val filePath = "/storage/emulated/0/Download/Zalo/TestRar.rar"
-       val list = ExtractUtils.getListFileInArchive(filePath)
-        list.forEach {
-            Log.e(
-                "AAAAA result = ",
-                it.itemPath.toString() + " Time = " + it.itemDateTime
-            )
+//        val list = ExtractUtils.getListFileInArchive(filePath)
+//        list.forEach {
+//            Log.e(
+//                "AAAAA result = ",
+//                it.itemPath.toString() + " Time = " + it.itemDateTime
+//            )
+//        }
+        binding.text.setOnClickListener {
+            startActivity(ZipActivity.createIntent(this))
         }
 //        ExtractUtils.extractFile(
 //            filePath,

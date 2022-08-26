@@ -506,10 +506,22 @@ extern "C" {
 int InitializeUpdateCallbackIds(JNIEnv *env) {
     int ret = 0;
     jclass updateCallbackClass = env->FindClass("vn/cma/compress/ZipCallback");
-    if (updateCallbackClass == nullptr) {
+    if (updateCallbackClass == NULL) {
         LOGE("Error:couldn't get classid of class: %s", "updateCallbackClass");
         return -1;
     }
+    LOGI("Initializing Method IDs for : %s", "updateCallback");
+    startArchive = env->GetMethodID(updateCallbackClass, "startArchive", "(Ljava/lang/String;Z)J");
+    if (!startArchive)
+        LOGE("Error:couldn't get methodid of method: %s", "startArchive");
+
+    checkBreak = env->GetMethodID(updateCallbackClass, "checkBreak", "()J");
+    if (!checkBreak)
+        LOGE("Error:couldn't get methodid of method: %s", "checkBreak");
+
+    scanProgress = env->GetMethodID(updateCallbackClass, "scanProgress", "(JJLjava/lang/String;)J");
+    if (!scanProgress)
+        LOGE("Error:couldn't get methodid of method: %s", "scanProgress");
 
     updateSetNumFiles = env->GetMethodID(updateCallbackClass, "setNumFiles", "(J)J");
     if (!updateSetNumFiles)
@@ -523,9 +535,25 @@ int InitializeUpdateCallbackIds(JNIEnv *env) {
     if (!updateSetCompleted)
         LOGE("Error:couldn't get methodid of method: %s", "setCompleted");
 
+    updateSetRatioInfo = env->GetMethodID(updateCallbackClass, "setRatioInfo", "(JJ)J");
+    if (!updateSetRatioInfo)
+        LOGE("Error:couldn't get methodid of method: %s", "setRatioInfo");
+
     getStream = env->GetMethodID(updateCallbackClass, "getStream", "(Ljava/lang/String;Z)J");
     if (!getStream)
         LOGE("Error:couldn't get methodid of method: %s", "getStream");
+
+    updateSetOperationResult = env->GetMethodID(updateCallbackClass, "setOperationResult", "(J)J");
+    if (!updateSetOperationResult)
+        LOGE("Error:couldn't get methodid of method: %s", "setOperationResult");
+
+    openCheckBreak = env->GetMethodID(updateCallbackClass, "openCheckBreak", "()J");
+    if (!openCheckBreak)
+        LOGE("Error:couldn't get methodid of method: %s", "openCheckBreak");
+
+    openSetCompleted = env->GetMethodID(updateCallbackClass, "openSetCompleted", "(JJ)J");
+    if (!openSetCompleted)
+        LOGE("Error:couldn't get methodid of method: %s", "openSetCompleted");
 
     addErrorMessage = env->GetMethodID(updateCallbackClass, "addErrorMessage",
                                        "(Ljava/lang/String;)V");

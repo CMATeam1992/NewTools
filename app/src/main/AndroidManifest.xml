@@ -20,6 +20,9 @@
         android:theme="@style/Theme.NewTools"
         tools:targetApi="31">
         <activity
+            android:name=".ZipActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
