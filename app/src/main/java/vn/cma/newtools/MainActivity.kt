@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import vn.cma.extract.ExtractCallback
-import vn.cma.extract.extension.ExtractUtils
 import vn.cma.newtools.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), ExtractCallback {

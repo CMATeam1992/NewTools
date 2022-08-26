@@ -5,7 +5,7 @@ import vn.cma.compress.ZipCallback
 import vn.cma.compress.utils.compression.CInfo
 
 object SmartCompress {
-    fun zipFile(smartCompressData: SmartCompressData, callback: ZipCallback) {
+    fun zipFile(smartCompressData: SmartCompressData, callback: ZipCallback): Int {
         val listFile = smartCompressData.listPath
         val arc = Archive()
         val info = CInfo()
@@ -25,7 +25,7 @@ object SmartCompress {
                 smartCompressData.outputPath
             )
         }
-        arc.createArchive(
+        return arc.createArchive(
             info.ArchiveName,
             listFile.toTypedArray(),
             listFile.size,
