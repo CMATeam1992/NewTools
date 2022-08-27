@@ -3,7 +3,11 @@ package vn.cma.newtools
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.schedulers.Schedulers
 import vn.cma.extract.ExtractCallback
+import vn.cma.extract.action.SmartExtract
 import vn.cma.newtools.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), ExtractCallback {
@@ -18,13 +22,24 @@ class MainActivity : AppCompatActivity(), ExtractCallback {
         setContentView(binding.root)
         //val filePath = "/storage/emulated/0/ZipExtractor/Compressed/testpass.zip"
         val filePath = "/storage/emulated/0/Download/Zalo/TestRar.rar"
-//        val list = ExtractUtils.getListFileInArchive(filePath)
-//        list.forEach {
-//            Log.e(
-//                "AAAAA result = ",
-//                it.itemPath.toString() + " Time = " + it.itemDateTime
-//            )
-//        }
+//        val list = SmartExtract.getListFileInArchive(filePath)
+        Single.fromCallable {
+            SmartExtract.getListFileInArchive(filePath)
+        }.map {
+            it.list
+        }.subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                it.forEach {
+                    Log.e(
+                        "AAAAA result = ",
+                        it.itemPath.toString() + " Time = " + it.itemDateTime
+                    )
+                }
+            }, {
+
+            })
+
         binding.text.setOnClickListener {
             startActivity(ZipActivity.createIntent(this))
         }

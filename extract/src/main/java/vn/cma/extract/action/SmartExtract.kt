@@ -6,7 +6,7 @@ import vn.cma.extract.data.ArchiveData
 
 object SmartExtract {
 
-    fun getListFileInArchive(filePath: String, password: String = "1234567"): ArchiveData {
+    fun getListFileInArchive(filePath: String, password: String = "123456"): ArchiveData {
         return Archive().getArchiveItemsList(filePath, "-p$password")
     }
 
