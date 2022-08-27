@@ -8,14 +8,14 @@ extern "C" {
 #endif
 
 JNIEXPORT void JNICALL Java_vn_cma_extract_Archive_init
-  (JNIEnv * env, jclass cls);
+        (JNIEnv *env, jclass cls);
 
 
 JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_extractArchive
-  (JNIEnv *, jobject, jstring, jstring,jobject);
+        (JNIEnv *, jobject, jstring, jstring, jstring, jobject);
 
 JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_listArchive2
-		(JNIEnv *, jobject, jstring, jobject, jstring);
+        (JNIEnv *, jobject, jstring, jobject, jstring);
 
 #ifdef __cplusplus
 }

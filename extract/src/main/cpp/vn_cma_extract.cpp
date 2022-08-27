@@ -832,7 +832,7 @@ int ProcessCommand(int numArgs, const char *args[], Environment &env) {
 #endif
                         &options.Properties,
                         numErrors, numWarnings, dataList);
-                if (hresultMain == 888){
+                if (hresultMain == 888) {
                     return NExitCode::kPassError;
                 }
                 if (options.EnableHeaders)
@@ -988,7 +988,7 @@ JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_listArchive2
 }
 
 JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_extractArchive
-        (JNIEnv *env, jobject, jstring arc, jstring dest, jobject obj) {
+        (JNIEnv *env, jobject, jstring arc, jstring dest, jstring pass, jobject obj) {
     try {
         if (jvm) {
             jvm->AttachCurrentThread(&env, nullptr);
@@ -1013,11 +1013,17 @@ JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_extractArchive
 
         LOGI("Opening Archive: %s \n", arcbuf);
         LOGI("Extracting to: %s \n", destbuf);
-        const char *args[5] = {"7z", "x", "-y", destbuf, arcbuf};
-        ret = ProcessCommand(5, args, environment);
+
+        char passOutbuf[1024];
+        memset(&passOutbuf[0], 0, sizeof(passOutbuf));
+        int lenPass = env->GetStringLength(pass);
+        env->GetStringUTFRegion(pass, 0, lenPass, passOutbuf);
+
+        const char *args[6] = {"7z", "x", "-y", passOutbuf, destbuf, arcbuf};
+        ret = ProcessCommand(6, args, environment);
         return ret;
     } catch (...) {
-        return -1992;
+        return -2003;
     }
 }
 

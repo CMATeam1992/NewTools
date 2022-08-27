@@ -35,7 +35,7 @@ public class Archive {
      * @param callback
      * @return 0 on success ,otherwise error state
      */
-    public native int extractArchive(String archPath, String extractionPath, ExtractCallback callback);
+    public native int extractArchive(String archPath, String extractionPath, String password, ExtractCallback callback);
 
 
     public ArchiveData getArchiveItemsList(String filePath, String password) {

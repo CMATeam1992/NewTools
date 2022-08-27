@@ -10,7 +10,12 @@ object SmartExtract {
         return Archive().getArchiveItemsList(filePath, "-p$password")
     }
 
-    fun extractFile(filePath: String, outputPath: String, extractCallback: ExtractCallback) : Int{
-        return Archive().extractArchive(filePath, outputPath, extractCallback)
+    fun extractFile(
+        filePath: String,
+        outputPath: String,
+        password: String,
+        extractCallback: ExtractCallback
+    ): Int {
+        return Archive().extractArchive(filePath, outputPath, "-p$password", extractCallback)
     }
 }
