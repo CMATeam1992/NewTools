@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity(), ExtractCallback {
 
     private lateinit var binding: ActivityMainBinding
 
-    private var pass = "123456890"
+    private var pass = "123456"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity(), ExtractCallback {
                 it.forEach {
                     Log.e(
                         "AAAAA result = ",
-                        it.itemPath.toString() + " Time = " + it.itemDateTime
+                        it.itemPath.toString() + " Size = " + it.itemPackedSize + "Size2 = " + it.itemUnPackedSize
                     )
                 }
             }, {

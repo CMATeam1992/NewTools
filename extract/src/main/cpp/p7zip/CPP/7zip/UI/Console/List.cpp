@@ -1400,10 +1400,11 @@ HRESULT ListArchives2(CCodecs *codecs,
             if (isAltStream && !showAltStreams)
                 continue;
 
+
             CustomArchiveItem item;
             item.itemPath = fp.FilePath;
-            item.packSize = GetUInt64Value(archive, i, kpidPackSize, st.PackSize);
-            item.unpackSize = GetUInt64Value(archive, i, kpidSize, st.Size);
+            item.packSize = st.Size.Val;
+            item.unpackSize =  st.PackSize.Val;
             item.isFolder = fp.IsDir;
             NCOM::CPropVariant prop;
             res = arc.Archive->GetProperty(i, kpidMTime, &prop);
