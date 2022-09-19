@@ -2,7 +2,7 @@ package vn.cma.compress;
 
 public class Archive {
     static {
-        System.loadLibrary("Rar");
+//        System.loadLibrary("Rar");
         System.loadLibrary("7z");
         System.loadLibrary("cma_zip_tools");
         init();
