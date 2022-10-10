@@ -485,13 +485,13 @@ int ProcessCommand(int numArgs, const char *args[], Environment &env) {
                 return NExitCode::kFatalError;
             }
         }
-        if (callback.FailedFiles.Size() > 0) {
-            if (!messageWasDisplayed) {
-                LOGE("Error, CSystemException:%d", E_FAIL);
-                throw CSystemException(E_FAIL);
-            }
-            return NExitCode::kWarning;
-        }
+//        if (callback.FailedFiles.Size() > 0) {
+//            if (!messageWasDisplayed) {
+//                LOGE("Error, CSystemException:%d", E_FAIL);
+//                throw CSystemException(E_FAIL);
+//            }
+//            return NExitCode::kWarning;
+//        }
 
         return 0;
     }
