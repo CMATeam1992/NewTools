@@ -16,6 +16,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import vn.cma.extract.ExtractCallback
 import vn.cma.extract.action.SmartExtract
 import vn.cma.newtools.databinding.ActivityMainBinding
+import java.io.File
 
 class MainActivity : AppCompatActivity(), ExtractCallback {
 
@@ -28,15 +29,26 @@ class MainActivity : AppCompatActivity(), ExtractCallback {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         //val filePath = "/storage/emulated/0/ZipExtractor/Compressed/testpass.zip"
-        val filePath = "/storage/emulated/0/CMA_Zip/Compressed/testApp333.zip"
-        val outFolder = "/storage/emulated/0/CMA_Zip/Compressed/Test3333"
-        val fileExtract = "testpass_20230331"
+        //  val filePath = "/storage/emulated/0/CMA_Zip/Compressed/testApp333.zip"
+      //  val filePath = "/storage/emulated/0/CMA_Zip/Compressed/test cachtotal.zip"
+        val filePath = "/storage/emulated/0/CMA_Zip/Compressed/test cachpass2.zip"
+        val outFolder = "/storage/emulated/0/CMA_Zip/Compressed/Test3339"
+        if (File(outFolder).exists().not()) {
+            File(outFolder).mkdirs()
+        }
+        // val fileExtract = "testpass_20230331"
+        val fileExtract = "test cach1.zip"
+        //  val file2 = "2023_12_04_16_24_30.mp3"
+        val file2 = "test cach2pasds.zip"
+        val listOf = listOf(fileExtract, file2)
 //        val list = SmartExtract.getListFileInArchive(filePath)
         Single.fromCallable {
-            SmartExtract.extractOnlyFile(
+            //        SmartExtract.getListFileInArchive(filePath)
+            SmartExtract.extractMultipleFileInZip(
                 filePath,
-                fileExtract,
+                listOf,
                 outFolder,
+                "123456",
                 object : ExtractCallback {
                     override fun guiGetPassword(): String? {
                         return ""
@@ -78,6 +90,12 @@ class MainActivity : AppCompatActivity(), ExtractCallback {
         }.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
+                if (it != 0) {
+                    File(outFolder).deleteRecursively()
+                }
+//                it.list.forEach {
+//                    Log.e("AAAAAA ===> success %s", it.itemPath)
+//                }
                 Log.e("AAAAAA ===> success %s", it.toString())
             }, {
                 Log.e("AAAAAA === > %s", it.toString())

@@ -27,7 +27,10 @@ public class Archive {
      */
     public native int listArchive2(String archPath, ArchiveItemsList itemsList, String password);
 
-    public native int executeCommand(String archPath, String outFolder, String fileName, ExtractCallback callback);
+    public native int executeCommand(String archPath, String outFolder, String fileName, String password, ExtractCallback callback);
+
+
+    public native int executeCommandList(String archPath, String outFolder, String[] itemsPaths, int length, String password, ExtractCallback callback);
 
     /**
      * Extracts the supplied archive into the given directory

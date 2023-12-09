@@ -1028,7 +1028,8 @@ JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_extractArchive
 }
 
 JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_executeCommand
-        (JNIEnv *env, jobject, jstring arc, jstring dest, jstring fileName, jobject obj) {
+        (JNIEnv *env, jobject, jstring arc, jstring dest, jstring fileName, jstring password,
+         jobject obj) {
     try {
         if (jvm) {
             jvm->AttachCurrentThread(&env, nullptr);
@@ -1060,16 +1061,94 @@ JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_executeCommand
         char fileExtractBuf[1024];
         memset(&fileExtractBuf[0], 0, sizeof(fileExtractBuf));
 
-//        char fileExtractOutbuf[1024];
-//        memset(&fileExtractOutbuf[0], 0, sizeof(fileExtractOutbuf));
-        int lenPass = env->GetStringLength(fileName);
-        env->GetStringUTFRegion(fileName, 0, lenPass, fileExtractBuf);
+        int lenFileName = env->GetStringLength(fileName);
+        env->GetStringUTFRegion(fileName, 0, lenFileName, fileExtractBuf);
 
-        const char *args[5] = {"7z", "x", arcbuf, destbuf, fileExtractBuf};
-        ret = ProcessCommand(5, args, environment);
+        char passOutbuf[1024];
+        memset(&passOutbuf[0], 0, sizeof(passOutbuf));
+        passOutbuf[0] = '-';
+        passOutbuf[1] = 'p';
+        int lenPass = env->GetStringLength(password);
+        env->GetStringUTFRegion(password, 0, lenPass, passOutbuf + 2);
+
+        const char *args[6] = {"7z", "x", arcbuf, passOutbuf, destbuf, fileExtractBuf};
+        ret = ProcessCommand(6, args, environment);
         return ret;
     } catch (...) {
         return -2003;
+    }
+}
+
+JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_executeCommandList
+        (JNIEnv *env, jobject, jstring arc, jstring dest, jobjectArray filespaths, jint length,
+         jstring password,
+         jobject obj) {
+    try {
+        if (jvm) {
+            jvm->AttachCurrentThread(&env, nullptr);
+            LOGI("jvm->AttachCurrentThread...");
+        }
+        int ret = 0;
+        memset(&environment, 0, sizeof(Environment));
+        environment.env = env;
+        environment.obj = obj;
+
+        char arcbuf[1024];
+        memset(&arcbuf[0], 0, sizeof(arcbuf));
+        int len = env->GetStringLength(arc);
+        env->GetStringUTFRegion(arc, 0, len, arcbuf);
+
+        char destbuf[255];
+        memset(&destbuf[0], 0, sizeof(destbuf));
+        destbuf[0] = '-';
+        destbuf[1] = 'o';
+        len = env->GetStringLength(dest);
+        env->GetStringUTFRegion(dest, 0, len, destbuf + 2);
+
+        char passOutbuf[1024];
+        memset(&passOutbuf[0], 0, sizeof(passOutbuf));
+        passOutbuf[0] = '-';
+        passOutbuf[1] = 'p';
+        int lenPass = env->GetStringLength(password);
+        env->GetStringUTFRegion(password, 0, lenPass, passOutbuf + 2);
+
+        LOGI("Opening Archive: %s \n", arcbuf);
+        LOGI("Extracting to: %s \n", destbuf);
+
+        const char *files[length];
+        AStringVector pathsstrings;
+        pathsstrings.Clear();
+
+        for (int i = 0; i < length; i++) {
+            char fileExtractBuf[1024];
+            memset(&fileExtractBuf[0], 0, sizeof(fileExtractBuf));
+            jstring jstr = (jstring) (env->GetObjectArrayElement(filespaths, i));
+            len = env->GetStringLength(jstr);
+            env->GetStringUTFRegion(jstr, 0, len, fileExtractBuf);
+            pathsstrings.Add(fileExtractBuf);
+            files[i] = pathsstrings[i];
+            LOGI("File:%s in Archive:%s", files[i], arcName);
+        }
+        if (length <= 0) {
+            LOGE("Error,String length is zero....");
+            return -2;
+        }
+
+
+        const int count = length + 5;
+        const char **args = new const char *[count];
+        args[0] = "7z";
+        args[1] = "x";
+        args[2] = arcbuf;
+        args[3] = passOutbuf;
+        args[4] = destbuf;
+        for (int i = 0; i < length; i++)
+            args[i + 5] = files[i];
+//        const char *args[count] = {"7z", "x", arcbuf, destbuf, fileExtractBuf2};
+        ret = ProcessCommand(count, args, environment);
+        return ret;
+    } catch (...) {
+        return -2004;
     }
 }
 

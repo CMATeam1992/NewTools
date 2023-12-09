@@ -14,9 +14,33 @@ object SmartExtract {
         filePath: String,
         fileExtract: String,
         outputPath: String,
+        password: String,
         extractCallback: ExtractCallback
     ): Int {
-        return Archive().executeCommand(filePath, outputPath, fileExtract, extractCallback)
+        return Archive().executeCommand(
+            filePath,
+            outputPath,
+            fileExtract,
+            password,
+            extractCallback
+        )
+    }
+
+    fun extractMultipleFileInZip(
+        filePath: String,
+        listFileNeedExtract: List<String>,
+        outputPath: String,
+        password: String,
+        extractCallback: ExtractCallback
+    ): Int {
+        return Archive().executeCommandList(
+            filePath,
+            outputPath,
+            listFileNeedExtract.toTypedArray(),
+            listFileNeedExtract.size,
+            password,
+            extractCallback
+        )
     }
 
     fun extractFile(
