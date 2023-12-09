@@ -958,11 +958,11 @@ JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_listArchive2
         env->GetStringUTFRegion(password, 0, lenPass, passOutbuf);
         //  LOGI("Listing Archive password: %s \n", passOutbuf);
 
-        const char *args[4] = {"7z", "l", passOutbuf, outbuf};
+        const char *args[5] = {"7z", "l", "-x!*/*", passOutbuf, outbuf};
 
         CustomArchiveItemList dataList;
         environment.extraData = &dataList;
-        int ret = ProcessCommand(4, args, environment);
+        int ret = ProcessCommand(5, args, environment);
         //LOGI("Number of Items in List is : %d ", dataList.Size());
 //        g_StdOut << "Number of Items in List is :" << dataList.Size() << endl;
         for (int i = 0; i < dataList.Size(); i++) {
@@ -1043,7 +1043,6 @@ JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_executeCommand
         memset(&arcbuf[0], 0, sizeof(arcbuf));
 
 
-
         char destbuf[255];
         memset(&destbuf[0], 0, sizeof(destbuf));
         destbuf[0] = '-';
@@ -1066,8 +1065,8 @@ JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_executeCommand
         int lenPass = env->GetStringLength(fileName);
         env->GetStringUTFRegion(fileName, 0, lenPass, fileExtractBuf);
 
-        const char *args[6] = {"7z", "x", arcbuf, destbuf, fileExtractBuf, "-r"};
-        ret = ProcessCommand(6, args, environment);
+        const char *args[5] = {"7z", "x", arcbuf, destbuf, fileExtractBuf};
+        ret = ProcessCommand(5, args, environment);
         return ret;
     } catch (...) {
         return -2003;
