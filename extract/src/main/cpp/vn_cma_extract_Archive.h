@@ -17,6 +17,10 @@ JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_extractArchive
 JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_listArchive2
         (JNIEnv *, jobject, jstring, jobject, jstring);
 
+JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_executeCommand
+        (JNIEnv *, jobject, jstring, jstring, jstring, jobject);
+
+
 #ifdef __cplusplus
 }
 #endif

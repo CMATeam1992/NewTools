@@ -3,13 +3,13 @@ package vn.cma.newtools
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -29,22 +29,58 @@ class MainActivity : AppCompatActivity(), ExtractCallback {
         setContentView(binding.root)
         //val filePath = "/storage/emulated/0/ZipExtractor/Compressed/testpass.zip"
         val filePath = "/storage/emulated/0/CMA_Zip/Compressed/testApp333.zip"
+        val outFolder = "/storage/emulated/0/CMA_Zip/Compressed/Test3333"
+        val fileExtract = "testpass_20230331"
 //        val list = SmartExtract.getListFileInArchive(filePath)
         Single.fromCallable {
-            SmartExtract.getListFileInArchive(filePath)
-        }.map {
-            it.list
+            SmartExtract.extractOnlyFile(
+                filePath,
+                fileExtract,
+                outFolder,
+                object : ExtractCallback {
+                    override fun guiGetPassword(): String? {
+                        return ""
+                    }
+
+                    override fun guiIsPasswordSet(): Boolean {
+                        return false
+                    }
+
+                    override fun setCurrentFilePath(filePath: String?, numFilesCur: Long): Long {
+                        return 0L
+                    }
+
+                    override fun setOperationResult(
+                        operationResult: Int,
+                        numFilesCur: Long,
+                        encrypted: Boolean
+                    ): Long {
+                        return 0L
+                    }
+
+                    override fun cryptoGetTextPassword(password: String?): String? {
+                        return ""
+                    }
+
+                    override fun setTotal(total: Long): Long {
+                        return 0L
+                    }
+
+                    override fun setCompleted(value: Long): Long {
+                        return 0L
+                    }
+
+                    override fun addErrorMessage(message: String?) {
+
+                    }
+
+                })
         }.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                it.forEach {
-                    Log.e(
-                        "AAAAA result = ",
-                        it.itemPath.toString() + " Size = " + it.itemPackedSize + "Size2 = " + it.itemUnPackedSize
-                    )
-                }
+                Log.e("AAAAAA ===> success %s", it.toString())
             }, {
-
+                Log.e("AAAAAA === > %s", it.toString())
             })
 
         binding.text.setOnClickListener {
@@ -66,6 +102,7 @@ class MainActivity : AppCompatActivity(), ExtractCallback {
             requestStorageManager()
         }
     }
+
     @RequiresApi(Build.VERSION_CODES.R)
     private fun requestStorageManager() {
         val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)

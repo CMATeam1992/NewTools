@@ -1027,6 +1027,53 @@ JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_extractArchive
     }
 }
 
+JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_executeCommand
+        (JNIEnv *env, jobject, jstring arc, jstring dest, jstring fileName, jobject obj) {
+    try {
+        if (jvm) {
+            jvm->AttachCurrentThread(&env, nullptr);
+            LOGI("jvm->AttachCurrentThread...");
+        }
+        int ret = 0;
+        memset(&environment, 0, sizeof(Environment));
+        environment.env = env;
+        environment.obj = obj;
+
+        char arcbuf[1024];
+        memset(&arcbuf[0], 0, sizeof(arcbuf));
+
+
+
+        char destbuf[255];
+        memset(&destbuf[0], 0, sizeof(destbuf));
+        destbuf[0] = '-';
+        destbuf[1] = 'o';
+
+        int len = env->GetStringLength(arc);
+        env->GetStringUTFRegion(arc, 0, len, arcbuf);
+
+        len = env->GetStringLength(dest);
+        env->GetStringUTFRegion(dest, 0, len, destbuf + 2);
+
+        LOGI("Opening Archive: %s \n", arcbuf);
+        LOGI("Extracting to: %s \n", destbuf);
+
+        char fileExtractBuf[1024];
+        memset(&fileExtractBuf[0], 0, sizeof(fileExtractBuf));
+
+//        char fileExtractOutbuf[1024];
+//        memset(&fileExtractOutbuf[0], 0, sizeof(fileExtractOutbuf));
+        int lenPass = env->GetStringLength(fileName);
+        env->GetStringUTFRegion(fileName, 0, lenPass, fileExtractBuf);
+
+        const char *args[6] = {"7z", "x", arcbuf, destbuf, fileExtractBuf, "-r"};
+        ret = ProcessCommand(6, args, environment);
+        return ret;
+    } catch (...) {
+        return -2003;
+    }
+}
+
 JNIEXPORT void JNICALL Java_vn_cma_extract_Archive_init
         (JNIEnv *env, jclass cls) {
     jclass extractCallbackClass = env->FindClass("vn/cma/extract/ExtractCallback");

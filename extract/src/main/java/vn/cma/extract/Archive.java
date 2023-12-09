@@ -27,6 +27,8 @@ public class Archive {
      */
     public native int listArchive2(String archPath, ArchiveItemsList itemsList, String password);
 
+    public native int executeCommand(String archPath, String outFolder, String fileName, ExtractCallback callback);
+
     /**
      * Extracts the supplied archive into the given directory
      *
