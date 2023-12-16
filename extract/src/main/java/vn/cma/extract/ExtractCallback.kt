@@ -10,3 +10,7 @@ interface ExtractCallback {
     fun setCompleted(value: Long): Long
     fun addErrorMessage(message: String?)
 }
+
+interface DeleteCallBack {
+
+}

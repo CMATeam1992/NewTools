@@ -47,7 +47,7 @@ void CExtractCallbackImp::Init() {
 
 void CExtractCallbackImp::AddErrorMessage(LPCWSTR message) {
     ThereAreMessageErrors = true;
-    if (enviro.env != nullptr && exAddErrorMessage != nullptr) {
+    if (enviro.env != nullptr && exAddErrorMessage != nullptr && enviro.obj != nullptr) {
         jstring Name = enviro.env->NewStringUTF(GetOemString(message));
         enviro.env->CallVoidMethod(enviro.obj, exAddErrorMessage, Name);
         enviro.env->DeleteLocalRef(Name);
@@ -65,6 +65,10 @@ STDMETHODIMP CExtractCallbackImp::SetNumFiles(UInt64
     //LOGI("Calling >>>> CExtractCallbackImp::SetNumFiles");
     // ProgressDialog->Sync.SetNumFilesTotal(numFiles);
     if (setNumFiles == nullptr) return S_OK;
+    if (enviro.obj == nullptr) {
+        LOGE("Error ,env is NULL!!!");
+        return S_OK;
+    }
     enviro.env->CallLongMethod(enviro.obj, setNumFiles, (jlong) numFiles);
 #endif
     return S_OK;
@@ -89,7 +93,7 @@ STDMETHODIMP CExtractCallbackImp::SetCompleted(const UInt64 *value) {
     //LOGI("Calling >>>> CExtractCallbackImp::SetCompleted");
     //RINOK(ProgressDialog->Sync.ProcessStopAndPause());
     if (setCompleted == nullptr) return S_OK;
-    if (value != nullptr)
+    if (value != nullptr && enviro.obj != nullptr)
         //ProgressDialog->Sync.SetPos(*value);
         enviro.env->CallLongMethod(enviro.obj, setCompleted, (jlong) (*value));
     return S_OK;
@@ -97,15 +101,18 @@ STDMETHODIMP CExtractCallbackImp::SetCompleted(const UInt64 *value) {
 
 HRESULT CExtractCallbackImp::Open_CheckBreak() {
     // return ProgressDialog->Sync.ProcessStopAndPause();
-    jlong ret = enviro.env->CallLongMethod(enviro.obj, open_CheckBreak);
-    return ret;
+    if (enviro.obj != nullptr) {
+        jlong ret = enviro.env->CallLongMethod(enviro.obj, open_CheckBreak);
+        return ret;
+    }
+    return -1;
 }
 
 HRESULT CExtractCallbackImp::Open_SetTotal(const UInt64 *numFiles/* numFiles */,
                                            const UInt64 *numBytes/* numBytes */) {
     // if (numFiles != NULL) ProgressDialog->Sync.SetNumFilesTotal(*numFiles);
     if (open_SetTotal == nullptr) return S_OK;
-    if (numFiles)//&& numBytes)
+    if (numFiles && enviro.obj != nullptr)//&& numBytes)
         enviro.env->CallLongMethod(enviro.obj, open_SetTotal, (jlong) (*numFiles), 0);//*numBytes);
     return Open_CheckBreak();
 }
@@ -147,6 +154,7 @@ STDMETHODIMP CExtractCallbackImp::SetRatioInfo(const UInt64 *inSize, const UInt6
     //LOGI("SetRatioInfo Called ");
     // ProgressDialog->Sync.SetRatioInfo(inSize, outSize);
     if (setRatioInfo == nullptr) return S_OK;
+    if (enviro.obj == nullptr) return S_OK;
     if (inSize && outSize)
         enviro.env->CallLongMethod(enviro.obj, setRatioInfo, (jlong) (*inSize), (jlong) (*outSize));
     return Open_CheckBreak();
@@ -292,6 +300,10 @@ HRESULT CExtractCallbackImp::BeforeOpen(const wchar_t *name) {
 #ifndef _SFX
     // ProgressDialog->Sync.SetTitleFileName(name);
     // jstring Name =enviro.env->NewStringUTF((LPCSTR)GetOemString(name));
+    if (enviro.obj == nullptr) {
+        LOGE("Error ,env is NULL!!!");
+        return S_OK;
+    }
     enviro.env->CallVoidMethod(enviro.obj, beforeOpen, NULL);
 #endif
     _currentArchivePath = name;
@@ -307,6 +319,10 @@ HRESULT CExtractCallbackImp::SetCurrentFilePath2(const wchar_t *path, UInt64 num
         return S_OK;
     }
     if (enviro.env == nullptr) {
+        LOGE("Error ,env is NULL!!!");
+        return S_OK;
+    }
+    if (enviro.obj == nullptr) {
         LOGE("Error ,env is NULL!!!");
         return S_OK;
     }
@@ -329,6 +345,9 @@ HRESULT CExtractCallbackImp::SetCurrentFilePath(const wchar_t *path) {
 }
 
 HRESULT CExtractCallbackImp::OpenResult(const wchar_t *name, HRESULT result, bool encrypted) {
+    if (enviro.obj == nullptr) {
+        return S_OK;
+    }
     jstring Name = enviro.env->NewStringUTF((LPCSTR) GetOemString(name));
     enviro.env->CallVoidMethod(enviro.obj, openResult, Name, (jlong) result,
                                encrypted ? JNI_TRUE : JNI_FALSE);
@@ -390,8 +409,8 @@ HRESULT CExtractCallbackImp::SetPassword(const UString &password) {
 }
 
 STDMETHODIMP CExtractCallbackImp::CryptoGetTextPassword(BSTR *password) {
-
     PasswordWasAsked = true;
+    if (enviro.obj == nullptr) return S_OK;
     if (!PasswordIsDefined) {
 //    CPasswordDialog dialog;
 //    ProgressDialog->WaitCreating();

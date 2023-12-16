@@ -1027,6 +1027,41 @@ JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_extractArchive
     }
 }
 
+JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_deleteFileInZip
+        (JNIEnv *env, jobject, jstring arc, jstring fileDelete) {
+    try {
+        if (jvm) {
+            jvm->AttachCurrentThread(&env, nullptr);
+            LOGI("jvm->AttachCurrentThread...");
+        }
+        int ret;
+        memset(&environment, 0, sizeof(Environment));
+        environment.env = env;
+        //  environment.obj = obj;
+
+        char arcbuf[1024];
+        memset(&arcbuf[0], 0, sizeof(arcbuf));
+        int lengthArc = env->GetStringLength(arc);
+        env->GetStringUTFRegion(arc, 0, lengthArc, arcbuf);
+
+        char fileDeleteBuf[1024];
+        memset(&fileDeleteBuf[0], 0, sizeof(fileDeleteBuf));
+        int lengthFileDelete = env->GetStringLength(fileDelete);
+        env->GetStringUTFRegion(fileDelete, 0, lengthFileDelete, fileDeleteBuf);
+
+//        char passOutbuf[1024];
+//        memset(&passOutbuf[0], 0, sizeof(passOutbuf));
+//        int lenPass = env->GetStringLength(pass);
+//        env->GetStringUTFRegion(pass, 0, lenPass, passOutbuf);
+
+        const char *args[4] = {"7z", "d", arcbuf, fileDeleteBuf};
+        ret = ProcessCommand(4, args, environment);
+        return ret;
+    } catch (...) {
+        return -2003;
+    }
+}
+
 JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_executeCommand
         (JNIEnv *env, jobject, jstring arc, jstring dest, jstring fileName, jstring password,
          jobject obj) {

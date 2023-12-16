@@ -42,6 +42,8 @@ public class Archive {
      */
     public native int extractArchive(String archPath, String extractionPath, String password, ExtractCallback callback);
 
+    public native int deleteFileInZip(String filePath, String fileDelete);
+
 
     public ArchiveData getArchiveItemsList(String filePath, String password) {
         ArchiveItemsList archiveItemsList = new ArchiveItemsList();

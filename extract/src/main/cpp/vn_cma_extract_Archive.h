@@ -14,6 +14,9 @@ JNIEXPORT void JNICALL Java_vn_cma_extract_Archive_init
 JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_extractArchive
         (JNIEnv *, jobject, jstring, jstring, jstring, jobject);
 
+JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_deleteFileInZip
+        (JNIEnv *, jobject, jstring, jstring);
+
 JNIEXPORT jint JNICALL Java_vn_cma_extract_Archive_listArchive2
         (JNIEnv *, jobject, jstring, jobject, jstring);
 

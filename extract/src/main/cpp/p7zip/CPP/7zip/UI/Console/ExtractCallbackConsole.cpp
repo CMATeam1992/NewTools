@@ -179,7 +179,9 @@ STDMETHODIMP CExtractCallbackConsole::SetTotal(UInt64 size) {
         _percent.Print();
     }
     if (setTotal) {
-        enviro.env->CallLongMethod(enviro.obj, setTotal, (jlong) size);
+        if (enviro.obj != nullptr) {
+            enviro.env->CallLongMethod(enviro.obj, setTotal, (jlong) size);
+        }
     }
     return CheckBreak2();
 }
@@ -191,7 +193,9 @@ STDMETHODIMP CExtractCallbackConsole::SetCompleted(const UInt64 *completeValue) 
         _percent.Print();
     }
     if (setCompleted) {
-        enviro.env->CallLongMethod(enviro.obj, setCompleted, (jlong) (*completeValue));
+        if (enviro.obj != nullptr) {
+            enviro.env->CallLongMethod(enviro.obj, setCompleted, (jlong) (*completeValue));
+        }
     }
     return CheckBreak2();
 }
@@ -411,16 +415,20 @@ STDMETHODIMP CExtractCallbackConsole::SetOperationResult(Int32 opRes, Int32 encr
             _se->Flush();
         }
         if (exAddErrorMessage) {
-            AString s;
-            SetExtractErrorMessage(opRes, encrypted, s);
-            jstring Name = enviro.env->NewStringUTF(GetOemString(s));
-            enviro.env->CallVoidMethod(enviro.obj, exAddErrorMessage, Name);
-            enviro.env->DeleteLocalRef(Name);
+            if (enviro.obj != nullptr) {
+                AString s;
+                SetExtractErrorMessage(opRes, encrypted, s);
+                jstring Name = enviro.env->NewStringUTF(GetOemString(s));
+                enviro.env->CallVoidMethod(enviro.obj, exAddErrorMessage, Name);
+                enviro.env->DeleteLocalRef(Name);
+            }
         }
     }
     if (setOperationResult) {
-        enviro.env->CallLongMethod(enviro.obj, setOperationResult, (jint) opRes,
-                                   (jlong) NumFileErrors, encrypted ? JNI_TRUE : JNI_FALSE);
+        if (enviro.obj != nullptr) {
+            enviro.env->CallLongMethod(enviro.obj, setOperationResult, (jint) opRes,
+                                       (jlong) NumFileErrors, encrypted ? JNI_TRUE : JNI_FALSE);
+        }
     }
     return CheckBreak2();
 }
@@ -446,7 +454,7 @@ HRESULT CExtractCallbackConsole::SetPassword(const UString &password) {
 STDMETHODIMP CExtractCallbackConsole::CryptoGetTextPassword(BSTR *password) {
     COM_TRY_BEGIN
         MT_LOCK
-        if (!PasswordIsDefined) {
+        if (!PasswordIsDefined && enviro.obj != nullptr) {
             auto pass = (jstring) enviro.env->CallObjectMethod(enviro.obj, cryptoGetTextPassword,
                                                                NULL);
             if (pass == nullptr) return E_ABORT;

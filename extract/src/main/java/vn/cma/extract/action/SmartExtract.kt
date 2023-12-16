@@ -6,6 +6,13 @@ import vn.cma.extract.data.ArchiveData
 
 object SmartExtract {
 
+    fun deleteFileInZip(
+        filePath: String,
+        fileDelete: String
+    ): Int {
+        return Archive().deleteFileInZip(filePath, fileDelete)
+    }
+
     fun getListFileInArchive(filePath: String, password: String = "123456"): ArchiveData {
         return Archive().getArchiveItemsList(filePath, "-p$password")
     }

@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), ExtractCallback {
         setContentView(binding.root)
         //val filePath = "/storage/emulated/0/ZipExtractor/Compressed/testpass.zip"
         //  val filePath = "/storage/emulated/0/CMA_Zip/Compressed/testApp333.zip"
-      //  val filePath = "/storage/emulated/0/CMA_Zip/Compressed/test cachtotal.zip"
+        //  val filePath = "/storage/emulated/0/CMA_Zip/Compressed/test cachtotal.zip"
         val filePath = "/storage/emulated/0/CMA_Zip/Compressed/test cachpass2.zip"
         val outFolder = "/storage/emulated/0/CMA_Zip/Compressed/Test3339"
         if (File(outFolder).exists().not()) {
@@ -39,60 +39,22 @@ class MainActivity : AppCompatActivity(), ExtractCallback {
         // val fileExtract = "testpass_20230331"
         val fileExtract = "test cach1.zip"
         //  val file2 = "2023_12_04_16_24_30.mp3"
-        val file2 = "test cach2pasds.zip"
+        val file2 = "test cachpass2.zip"
         val listOf = listOf(fileExtract, file2)
+        val fileDelete = "test cach1.zip"
 //        val list = SmartExtract.getListFileInArchive(filePath)
         Single.fromCallable {
-            //        SmartExtract.getListFileInArchive(filePath)
-            SmartExtract.extractMultipleFileInZip(
+//            SmartExtract.getListFileInArchive(filePath)
+            SmartExtract.deleteFileInZip(
                 filePath,
-                listOf,
-                outFolder,
-                "123456",
-                object : ExtractCallback {
-                    override fun guiGetPassword(): String? {
-                        return ""
-                    }
-
-                    override fun guiIsPasswordSet(): Boolean {
-                        return false
-                    }
-
-                    override fun setCurrentFilePath(filePath: String?, numFilesCur: Long): Long {
-                        return 0L
-                    }
-
-                    override fun setOperationResult(
-                        operationResult: Int,
-                        numFilesCur: Long,
-                        encrypted: Boolean
-                    ): Long {
-                        return 0L
-                    }
-
-                    override fun cryptoGetTextPassword(password: String?): String? {
-                        return ""
-                    }
-
-                    override fun setTotal(total: Long): Long {
-                        return 0L
-                    }
-
-                    override fun setCompleted(value: Long): Long {
-                        return 0L
-                    }
-
-                    override fun addErrorMessage(message: String?) {
-
-                    }
-
-                })
+                fileDelete
+            )
         }.subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                if (it != 0) {
-                    File(outFolder).deleteRecursively()
-                }
+//                if (it != 0) {
+//                    File(outFolder).deleteRecursively()
+//                }
 //                it.list.forEach {
 //                    Log.e("AAAAAA ===> success %s", it.itemPath)
 //                }
